@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<!-- 
+    Created By: Justin Freiberg
+
+    Project: MatchMakerWebApp
+    
+    All Rights Reserved.
+-->
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Matchmaker</title>
+</head>
+
+<body>
+    <h1>Matchmaker</h1>
+    <p>Hello, this is a fun little application that will help me see if you and I are compatible. 
+      The instructions are pretty easy to understand, <br /> all you have to do is read the 5 following questions and choose your response in the drop down following each question. 
+      The answers <br /> are fairly self-explanatory, strongly agree all the way down to strongly disagree.
+      After you have answered all questions you will click the <br />"Calculate Compatibility" button at the bottom
+      andout will come your compatibility score. Good Luck!!!
+
+     <br /><br /><br /><br />
+
+    <label>The Chicago White Sox are the superior Chicago baseball team.</label><br />
+
+    <select id='q1'>
+      <option value='5'>Strongly Agree</option>
+      <option value='4'>Agree</option>
+      <option value='3'>Neither agree nor disagree</option>
+      <option value='2'>Disagree</option>
+      <option value='1'>Strongly Disagree</option>
+    </select>
+    <br /><br />
+    <label>Golf is one of the more difficult sports to learn and improve at.</label><br />
+
+    <select id='q2'>
+      <option value='5'>Strongly Agree</option>
+      <option value='4'>Agree</option>
+      <option value='3'>Neither agree nor disagree</option>
+      <option value='2'>Disagree</option>
+      <option value='1'>Strongly Disagree</option>
+    </select>
+    <br /><br />
+    <label>Pinepple belongs on pizza.</label><br />
+
+    <select id='q3'>
+      <option value='5'>Strongly Agree</option>
+      <option value='4'>Agree</option>
+      <option value='3'>Neither agree nor disagree</option>
+      <option value='2'>Disagree</option>
+      <option value='1'>Strongly Disagree</option>
+    </select>
+    <br /><br />
+    <label>Subway is better than any other sub shop.</label><br />
+
+    <select id='q4'>
+      <option value='5'>Strongly Agree</option>
+      <option value='4'>Agree</option>
+      <option value='3'>Neither agree nor disagree</option>
+      <option value='2'>Disagree</option>
+      <option value='1'>Strongly Disagree</option>
+    </select>
+    <br /><br />
+    <label>We are not the only living life form in the universe.</label><br />
+
+    <select id='q5'>
+      <option value='5'>Strongly Agree</option>
+      <option value='4'>Agree</option>
+      <option value='3'>Neither agree nor disagree</option>
+      <option value='2'>Disagree</option>
+      <option value='1'>Strongly Disagree</option>
+    </select>
+
+    <br /><br /><br />
+    <button onclick='calculateCompatibility()'>Calculate Compatibility</button>
+    <p id='compatibility'> </p>
+
+<script>
+console.log('Starting Matchmaker...');
+
+function calculateCompatibility() {
+    console.log('calculateCompatibility()');
+
+    const DESIRED_RESPONSE = [
+        5,
+        4,
+        3,
+        1,
+        4
+    ]
+
+    const MAX_SCORE = 25
+
+    let question1Response = document.getElementById('q1').selectedOptions[0].value;
+    let question2Response = document.getElementById('q2').selectedOptions[0].value;
+    let question3Response = document.getElementById('q3').selectedOptions[0].value;
+    let question4Response = document.getElementById('q4').selectedOptions[0].value;
+    let question5Response = document.getElementById('q5').selectedOptions[0].value;
+
+
+    let question1Compatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+    let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+    let question3Compatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Compatibility = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Compatibility = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+    console.log(question1Compatibility); 
+    console.log(question2Compatibility);
+    console.log(question3Compatibility);
+    console.log(question4Compatibility);
+    console.log(question5Compatibility);
+
+    let totalCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility; 
+
+    totalCompatibility *= 100 / MAX_SCORE;
+    totalCompatibility = Math.round(totalCompatibility);
+    console.log('totalCompatibility='+ totalCompatibility);
+
+    document.getElementById('compatibility').innerHTML = 'Your compatibility is: ' + totalCompatibility;
+}
+</script> 
+
+</body>
+</html>
